@@ -1,7 +1,7 @@
 # TreeCarbon: UK tree allometrics in R
 # Version 1.0
 ## Goal
-The goal of TreeCarbon is to estimate the carbon from diamter at breast height (dbh) measurements and tree species information using allometry from the Woodland Carbon Code Jenkins, Thomas AR, et al. "FC Woodland Carbon Code: Carbon Assessment Protocol (v2. 0)." (2018), allodb.R, BIOMASS.R and Bunce (1968). The package also propagates error for estimates.
+The goal of TreeCarbon is to estimate the carbon from diameter at breast height (dbh) measurements and tree species information using allometry from the Woodland Carbon Code Jenkins, Thomas AR, et al. "FC Woodland Carbon Code: Carbon Assessment Protocol (v2. 0)." (2018), allodb.R, BIOMASS.R and Bunce (1968). The package also propagates error for estimates.
 ## Authors and contributors
 Authors: Isabel Openshaw and Justin Moat  
 Contributors: Phil Wilkes
@@ -13,7 +13,7 @@ Contributors: Phil Wilkes
 
 ## 1.0 Introduction
 
-Accurately estimating tree biomass is a challenge, as destructive sampling is rarely done, this means most estimates rely on allometric equations that use measurements like diameter at breast height (DBH) and tree height. But these estimates vary greatly. The variation isn't just with the allometric equations themselves; it's in the varibles we use within them: DBH, height, wood density, and biomass-to-carbon conversion factors. These numbers are fundamental to how we calculate natural carbon for; carbon markets, tree planting schemes, and offsetting initiatives and within national tree planting and net zero targets.
+Accurately estimating tree biomass is a challenge, as destructive sampling is rarely done, this means most estimates rely on allometric equations that use measurements like diameter at breast height (DBH) and tree height. But these estimates vary greatly. The variation isn't just with the allometric equations themselves; it's in the variables  we use within them: DBH, height, wood density, and biomass-to-carbon conversion factors. These numbers are fundamental to how we calculate natural carbon for; carbon markets, tree planting schemes, and offsetting initiatives and within national tree planting and net zero targets.
 
 To address this, we've developed the TreeCarbon R package—a tool that calculates and compares biomass and carbon estimates, whilst quantifying the uncertainties involved. The package is built around UK tree species and protocols, making it directly relevant to UK-based projects, but it’s flexible enough to be adapted for use in other regions with local allometric equations and inputs. It pulls together key UK allometries and common routines, including the [Woodland Carbon Code Protocol Assessment (2021)](https://www.woodlandcarboncode.org.uk/images/PDFs/WCC_SurveyProtocol_Version2.1_March2021.pdf), [Bunce (1968)](https://doi.org/10.2307/2258105), [allodb](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13756) and [BIOMASS.R](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12753) (NB this package is predominately for tropical forests). It also adds support for terrestrial laser scanning workflows. The aim is to make it easier for researchers, practitioners, and decision-makers to see how different methods and estimates compare.
 
