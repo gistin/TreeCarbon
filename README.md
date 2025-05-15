@@ -1,6 +1,6 @@
 # TreeCarbon: UK tree allometrics in R
 # Version 1.0
-# Goal
+## Goal
 The goal of TreeCarbon is to estimate the carbon from diamter at breast height (dbh) measurements and tree species information using allometry from the Woodland Carbon Code Jenkins, Thomas AR, et al. "FC Woodland Carbon Code: Carbon Assessment Protocol (v2. 0)." (2018), allodb.R, BIOMASS.R and Bunce (1968). The package also propagates error for estimates.
 ## Authors and contributors
 Authors: Isabel Openshaw and Justin Moat  
