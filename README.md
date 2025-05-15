@@ -106,6 +106,14 @@ dbhs <- rnorm(10,mean = 74, sd = 0.5)
 heights <- rnorm(10,mean = 24, sd = 1)
 
 fc_agc(names,dbhs,heights)
+
+###other routines
+#WWC seedling and saplings are calculated differently to trees, only height 
+#and type are needed (conifer or broadleaf)
+#note height is in cm
+sap_seedling2C(50, 'conifer')
+#Carbon of CO2 conversion ie 1 tonne carbon - 3.6
+ctoco2e(1)
 ```
 
 ## Acknowlegements
