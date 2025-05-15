@@ -100,7 +100,7 @@ allodb(24, "Fagus", "sylvatica", coords, output.all = FALSE)
 Bunce("beech",72)
 
 
-###Batch processing with vectors (list or table of species)
+###Batch processing with vectors (list or dataframe of species)
 names = rep(c("Oak", "Beech"),5)
 dbhs = rnorm(10,mean = 74, sd = 0.5)
 heights = rnorm(10,mean = 24, sd = 1)
