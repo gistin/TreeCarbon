@@ -15,7 +15,7 @@ Contributors: Phil Wilkes
 
 Accurately estimating tree biomass is a challenge, as destructive sampling is rarely done, this means most estimates rely on allometric equations that use measurements like diameter at breast height (DBH) and tree height. But these estimates vary greatly. The variation isn't just with the allometric equations themselves; it's in the varibles we use within them: DBH, height, wood density, and biomass-to-carbon conversion factors. These numbers are fundamental to how we calculate natural carbon for; carbon markets, tree planting schemes, and offsetting initiatives and within national tree planting and net zero targets.
 
-To address this, we've developed the TreeCarbon R package—a tool that calculates and compares biomass and carbon estimates, whilst quantifying the uncertainties involved. The package is built around UK tree species and protocols, making it directly relevant to UK-based projects, but it’s flexible enough to be adapted for use in other regions with local allometric equations and inputs. It pulls together key UK allometries and common routines, including the [Woodland Carbon Code Protocol Assessment (2021)](https://www.woodlandcarboncode.org.uk/images/PDFs/WCC_SurveyProtocol_Version2.1_March2021.pdf), [Bunce (1968)](https://doi.org/10.2307/2258105), [allodb](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13756) and [BIOMASS.R](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12753). It also adds support for terrestrial laser scanning workflows. The aim is to make it easier for researchers, practitioners, and decision-makers to see how different methods and estimates compare.
+To address this, we've developed the TreeCarbon R package—a tool that calculates and compares biomass and carbon estimates, whilst quantifying the uncertainties involved. The package is built around UK tree species and protocols, making it directly relevant to UK-based projects, but it’s flexible enough to be adapted for use in other regions with local allometric equations and inputs. It pulls together key UK allometries and common routines, including the [Woodland Carbon Code Protocol Assessment (2021)](https://www.woodlandcarboncode.org.uk/images/PDFs/WCC_SurveyProtocol_Version2.1_March2021.pdf), [Bunce (1968)](https://doi.org/10.2307/2258105), [allodb](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13756) and [BIOMASS.R](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12753) (NB this package is predominately for tropical forests). It also adds support for terrestrial laser scanning workflows. The aim is to make it easier for researchers, practitioners, and decision-makers to see how different methods and estimates compare.
 
 TreeCarbon includes uncertainty estimation routines and supports batch processing, users can compare across datasets and methods. It helps show the assumptions embedded into these allometric equations and provides a way to easily test, compare, and quantify the uncertainty they convey. 
 
@@ -48,12 +48,64 @@ This is a basic example which shows you how to use the most common problem featu
 
 ``` r
 library(TreeCarbon)
-## basic example code
+## example to calculate the above ground carbon for an English Oak(Quercus robur)
+## with dbh 75 cm and height of 25m, using the woodland carbon code V3.0
+fc_agc("Quercus robur", 75, 25, output.all = F)
 ```
 ## Detailed walk through
 ``` r
-library(TreeCarbon)
-## code
+#simple example
+devtools::install_github("gistin/TreeCarbon")
+
+library (TreeCarbon)
+#quick example
+fc_agc("Quercus robur", 75, 25, output.all = F)
+
+#detailed walk through
+#single tree example
+common_name = "Oak"
+dbh = 75 #cm
+height = 25  #m
+
+####Woodland carbon code (WCC) V2.0 walkthrough
+#The woodland carbon code use multiple different allometrics to firstly derive
+#tarrif number which leads to Stem volume, Stem biomass and Crown biomass 
+#and also estimates of root biomass.
+#Each of these can be called individually (see help file) or as one with fc_agc
+#Common names are looked up and matched to the close species (UK centric),
+#if the name is not then the type can be used (broadleaf or conifer) to give
+#broad WCC figures for the UK
+
+fc_agc(common_name, dbh, height, output.all = T)
+#where spcode = lookup code in WCC
+#NSG = wood density from the WCC look up
+
+
+#wood density is defaulted to the WWC or you can specify your own
+#Here the case of a beech, with dbh 72 cm and 24m tall and using wood density from the 
+#BIOMASS package
+#install.packages("BIOMASS") #if needed
+
+wd <- BIOMASS::getWoodDensity('Fagus', 'sylvatica', region='Europe')
+fc_agc('beech', 72, 24, nsg = wd$meanWD)
+
+###using BIOMASS package allometry (note these equations are orientated to tropical areas)
+coords <- c(-0.088837, 51.071610)
+biomass(72, 24,'Fagus', 'sylvatica', coords )
+
+###Using allodb package
+allodb(24, "Fagus", "sylvatica", coords, output.all = FALSE)
+
+###Using Bunce 1968 allometry NB onlys uses dbh not height
+Bunce("beech",72)
+
+
+###Batch processing with vectors (list or table of species)
+names = rep(c("Oak", "Beech"),5)
+dbhs = rnorm(10,mean = 74, sd = 0.5)
+heights = rnorm(10,mean = 24, sd = 1)
+
+fc_agc(names,dbhs,heights)
 ```
 
 ## Acknowlegements
