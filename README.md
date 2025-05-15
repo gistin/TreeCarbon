@@ -101,15 +101,15 @@ Bunce("beech",72)
 
 
 ###Batch processing with vectors (list or dataframe of species)
-names = rep(c("Oak", "Beech"),5)
-dbhs = rnorm(10,mean = 74, sd = 0.5)
-heights = rnorm(10,mean = 24, sd = 1)
+names <- rep(c("Oak", "Beech"),5)
+dbhs <- rnorm(10,mean = 74, sd = 0.5)
+heights <- rnorm(10,mean = 24, sd = 1)
 
 fc_agc(names,dbhs,heights)
 ```
 
 ## Acknowlegements
-This work is part of the Nature Unlock program at [Royal Botanic Gardens Kew](https://www.kew.org/science), and the [Nature Returns programme](https://www.kew.org/science/nature-returns).  It was funded or sponsored by the following UK government departments: HM Treasury (Shared Outcomes Fund), Department for Environment, Food and Rural Affairs, Department for Energy Security and Net Zero.
+This work is part of the Nature Unlock program at [Royal Botanic Gardens Kew](https://www.kew.org/wakehurst/nature-unlocked), and the [Nature Returns programme](https://www.kew.org/science/nature-returns).  It was funded or sponsored by the following UK government departments: HM Treasury (Shared Outcomes Fund), Department for Environment, Food and Rural Affairs, Department for Energy Security and Net Zero.
 
 ## Main citations
 
