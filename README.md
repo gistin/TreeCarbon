@@ -107,6 +107,9 @@ heights <- rnorm(10,mean = 24, sd = 1)
 
 fc_agc(names,dbhs,heights)
 
+###test against several allometries
+allometries("Quercus", "robur", dbh = 20, height = 10)
+
 ###other routines
 #WWC seedling and saplings are calculated differently to trees, only height 
 #and type are needed (conifer or broadleaf)
@@ -120,6 +123,19 @@ ctoco2e(1)
 This work is part of the Nature Unlock program at [Royal Botanic Gardens Kew](https://www.kew.org/wakehurst/nature-unlocked), and the [Nature Returns programme](https://www.kew.org/science/nature-returns).  It was funded or sponsored by the following UK government departments: HM Treasury (Shared Outcomes Fund), Department for Environment, Food and Rural Affairs, Department for Energy Security and Net Zero.
 
 ## Main citations
+
+Bunce, R. G. H. (1968). Biomass and Production of Trees in a Mixed Deciduous Woodland: I. Girth and Height as Parameters for the Estimation of Tree Dry Weight. The Journal of Ecology, 56(3), 759. [https://doi.org/10.2307/2258105](https://doi.org/10.2307/2258105)
+
+Chave, J., Condit, R., Aguilar, S., Hernandez, A., Lao, S., & Perez, R. (2004). Error propagation and scaling for tropical forest biomass estimates. Philosophical Transactions of the Royal Society B. [https://doi.org/10.1098/rstb.2003.1425](https://doi.org/10.1098/rstb.2003.1425)
+
+Gonzalez-Akre, E., Piponiot, C., Lepore, M., Herrmann, V., Lutz, J. A., Baltzer, J. L., Dick, C. W., Gilbert, G. S., He, F., Heym, M., Huerta, A. I., Jansen, P. A., Johnson, D. J., Knapp, N., Král, K., Lin, D., Malhi, Y., McMahon, S. M., Myers, J. A., … Anderson-Teixeira, K. J. (2022). allodb: An R package for biomass estimation at globally distributed extratropical forest plots. Methods in Ecology and Evolution, 13(2), 330–338. [https://doi.org/10.1111/2041-210X.13756](https://doi.org/10.1111/2041-210X.13756)
+
+Jenkins, T. A. R., Mackie, E. D., Matthews, R. W., Miller, G., Randle, T. J., & White, M. E. (2018). FC Woodland Carbon Code: Carbon Assessment Protocol (v2.0). [https://www.woodlandcarboncode.org.uk/images/PDFs/WCC_CarbonAssessmentProtocol_V2.0_March2018.pdf](https://www.woodlandcarboncode.org.uk/images/PDFs/WCC_CarbonAssessmentProtocol_V2.0_March2018.pdf)
+
+Pachauri, R. K., Meyer, L. A., Barros V.R., Broome J., Cramer W., Christ R., Church J.A., Clarke L., Dahe Q., Dasgupta P., & Dubash N.K. (2014). IPCC, 2014: Climate Change 2014: Synthesis Report. Contribution of Working Groups I, II and III to the Fifth Assessment Report of the Intergovernmental Panel on Climate 
+Change. [https://www.ipcc.ch/pdf/assessment-report/ar5/syr/SYR_AR5_FINAL_full_wcover.pdf](https://www.ipcc.ch/pdf/assessment-report/ar5/syr/SYR_AR5_FINAL_full_wcover.pdf)
+
+Réjou-Méchain, M., Tanguy, A., Piponiot, C., Chave, J., & Hérault, B. (2017). biomass: an r package for estimating above-ground biomass and its uncertainty in tropical forests. Methods in Ecology and Evolution, 8(9), 1163–1167. [https://doi.org/10.1111/2041-210X.12753](https://doi.org/10.1111/2041-210X.12753)
 
 ### Licence
 
