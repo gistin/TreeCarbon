@@ -20,11 +20,11 @@ To address this, we've developed the TreeCarbon R package—a tool that calculat
 TreeCarbon includes uncertainty estimation routines and supports batch processing, users can compare across datasets and methods. It helps show the assumptions embedded into these allometric equations and provides a way to easily test, compare, and quantify the uncertainty they convey. 
 
 
-### 1.0.1 Brief history
+### 1.0.1 Version history
 
 <!-- badges: start -->
 * 03/2025 version 1.0 release
-* 2024 Beta version released for testing within project
+* 00/2024 Beta version released for testing within project
 <!-- badges: end -->
 
 
