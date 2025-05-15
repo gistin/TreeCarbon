@@ -1,7 +1,7 @@
 # TreeCarbon: UK tree allometrics in R
 # Version 1.0
 ## Goal
-The goal of TreeCarbon is to estimate the carbon from diameter at breast height (dbh) measurements and tree species information using allometry from the Woodland Carbon Code Jenkins, Thomas AR, et al. "FC Woodland Carbon Code: Carbon Assessment Protocol (v2. 0)." (2018), allodb.R, BIOMASS.R and Bunce (1968). The package also propagates error for estimates.
+The goal of TreeCarbon is to estimate the carbon from diameter at breast height (DBH) measurements and tree species information using allometry from the Woodland Carbon Code Jenkins, Thomas AR, et al. "FC Woodland Carbon Code: Carbon Assessment Protocol (v2. 0)." (2018), allodb.R, BIOMASS.R and Bunce (1968). The package also propagates error for estimates.
 ## Authors and contributors
 Authors: Isabel Openshaw and Justin Moat  
 Contributors: Phil Wilkes
@@ -49,7 +49,7 @@ This is a basic example which shows you how to use the most common problem featu
 ``` r
 library(TreeCarbon)
 ## example to calculate the above ground carbon for an English Oak(Quercus robur)
-## with dbh 75 cm and height of 25m, using the woodland carbon code V3.0
+## with DBH 75 cm and height of 25m, using the woodland carbon code V3.0
 fc_agc("Quercus robur", 75, 25, output.all = F)
 ```
 ## Detailed walk through
@@ -100,7 +100,7 @@ allodb(24, "Fagus", "sylvatica", coords, output.all = FALSE)
 Bunce("beech",72)
 
 
-###Batch processing with vectors (list or dataframe of species)
+###Batch processing with vectors (list or a dataframe of species)
 names <- rep(c("Oak", "Beech"),5)
 dbhs <- rnorm(10,mean = 74, sd = 0.5)
 heights <- rnorm(10,mean = 24, sd = 1)
@@ -116,7 +116,7 @@ sap_seedling2C(50, 'conifer')
 ctoco2e(1)
 ```
 
-## Acknowlegements
+## Acknowledgements
 This work is part of the Nature Unlock program at [Royal Botanic Gardens Kew](https://www.kew.org/wakehurst/nature-unlocked), and the [Nature Returns programme](https://www.kew.org/science/nature-returns).  It was funded or sponsored by the following UK government departments: HM Treasury (Shared Outcomes Fund), Department for Environment, Food and Rural Affairs, Department for Energy Security and Net Zero.
 
 ## Main citations
