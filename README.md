@@ -1,5 +1,3 @@
-#notes
-
 # TreeCarbon: UK tree allometrics in R
 # Version 1.0
 # Goal
