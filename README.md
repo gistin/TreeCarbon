@@ -1,12 +1,3 @@
----
-editor_options:
-  markdown:
-    wrap: 72
-output:
-  html_document:
-    df_print: paged
----
-
 # TreeCarbon: UK tree allometrics in R
 
 # Version 1.0
