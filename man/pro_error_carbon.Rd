@@ -16,15 +16,15 @@ pro_error_carbon(
 )
 }
 \arguments{
-\item{vol}{volume}
+\item{vol}{volume (m3)}
 
 \item{sig_vol}{sigma (standard deviation) for volume}
 
-\item{den}{density}
+\item{den}{density (g/cm3)}
 
 \item{sig_den}{sigma (standard deviation) for wood density}
 
-\item{biom}{biomass}
+\item{biom}{biomass (kg)}
 
 \item{sig_biom}{sigma (standard deviation) for biomass}
 
@@ -38,6 +38,18 @@ either vector of mean and sd or vector of quantiles
 }
 \description{
 Progression of errors through monte carlo simulation
+}
+\examples{
+vol <- 100
+volsd <- 10
+den <- 0.5
+densd <- 0.005
+biom <- 0.5
+biomsd <- 0.0025
+nruns <-100000
+ pro_error_carbon(vol,volsd,den,densd,biom,biomsd,nruns=100000)
+ #returns quantiles at 5\%,50\% and 95\%
+ pro_error_carbon(vol,volsd,den,densd,biom,biomsd,nruns=100000,returnv=c(5,50,95)/100)
 }
 \references{
 todo** and to write at export

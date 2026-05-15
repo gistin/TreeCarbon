@@ -1054,9 +1054,8 @@ quick_uncertainty <- function(method = "Bunce", dbh, height = NULL,
 
 
 #############  Monte Carlo Uncertainty Propagation #############
-#'
-#' Propagates uncertainty in tree biomass or carbon estimates using Monte Carlo simulation.
-#' This function can be applied to any allometric function, including Bunce, WCC, Chave, or user-defined functions.
+#' @title Propagates uncertainty in tree biomass or carbon estimates using Monte Carlo simulation.
+#' @description This function can be applied to any allometric function, including Bunce, WCC, Chave, or user-defined functions.
 #' Users provide the function, input means and standard deviations (measurement or parameter uncertainty),
 #' and optionally a correlation matrix between inputs.
 #'
@@ -1142,9 +1141,9 @@ MC_propagate <- function(fn, inputs, N = 5000, corr_matrix = NULL, extra_args = 
 #' @title Carbon progression of errors
 #' @description Progression of errors through monte carlo simulation
 #' @author Justin Moat. J.Moat@kew.org, Isabel Openshaw. I.Openshaw@kew.org
-#' @param vol volume
-#' @param den density
-#' @param biom biomass
+#' @param vol volume (m3)
+#' @param den density (g/cm3)
+#' @param biom biomass (kg)
 #' @param sig_vol sigma (standard deviation) for volume
 #' @param sig_den sigma (standard deviation) for wood density
 #' @param sig_biom sigma (standard deviation) for biomass
@@ -1157,17 +1156,18 @@ MC_propagate <- function(fn, inputs, N = 5000, corr_matrix = NULL, extra_args = 
 #' @import remotes
 #' @export
 #' @aliases pro_error_carbon
-#'
-#vol <- 100
-#volsd <- 10
-#den <- 0.5
-#densd <- 0.005
-#biom <- 0.5
-#biomsd <- 0.0025
-#nruns <-100000
-#returnsv <- c(5,50,95)/100
-# pro_error_carbon(vol,volsd,den,densd,biom,biomsd,nruns=100000,returnsv=c(5,50,95)/100)
-# pro_error_carbon(vol,volsd,den,densd,biom,biomsd,nruns=100000)
+#' @examples
+#' vol <- 100
+#' volsd <- 10
+#' den <- 0.5
+#' densd <- 0.005
+#' biom <- 0.5
+#' biomsd <- 0.0025
+#' nruns <-100000
+#'  pro_error_carbon(vol,volsd,den,densd,biom,biomsd,nruns=100000)
+#'  #returns quantiles at 5%,50% and 95%
+#'  pro_error_carbon(vol,volsd,den,densd,biom,biomsd,nruns=100000,returnv=c(5,50,95)/100)
+
 pro_error_carbon <- function(vol, sig_vol, den, sig_den, biom, sig_biom,
                              nruns = 10000, returnv = NULL) {
   # Monte Carlo propagation for: carbon = vol * den * biom

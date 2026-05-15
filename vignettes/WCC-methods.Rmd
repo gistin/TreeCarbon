@@ -775,6 +775,7 @@ to per-hectare values. Helper functions support these operations:
 ```{r wcc-mean-tariff}
 # Mean tariff from sample trees (WCC protocol requirement)
 spcode <- lookupcode("Oak", type = "broadleaf")$code
+spcode <- rep(spcode, 5)
 sample_heights <- c(18, 20, 19, 22, 17)  # m
 sample_dbh <- c(45, 48, 42, 52, 38)      # cm
 
@@ -915,9 +916,10 @@ Appendix 5 describes a 1.12 ha broadleaved woodland with Method E (full tree cou
 # Oak and ash/birch groups - individual trees or DBH classes
 trees_oak <- data.frame(dbh = c(25, 30, 35, 40, 45), height = c(12, 15, 18, 20, 22),
                         count = c(50, 80, 120, 150, 100))
+names <- rep("Oak", 5)
 
 carbon_oak <- sum(
-  fc_agc_error(name = "Oak", dbh = trees_oak$dbh, height = trees_oak$height,
+  fc_agc_error(names, dbh = trees_oak$dbh, height = trees_oak$height,
                type = "broadleaf", method = "Matthews2",
                height_timber = trees_oak$height * 0.85)$AGC_WCC_t * trees_oak$count
 )

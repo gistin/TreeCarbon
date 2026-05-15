@@ -2,6 +2,7 @@
 % Please edit documentation in R/C_allometries.R
 \name{Bunce}
 \alias{Bunce}
+\alias{bunce}
 \title{Bunce biomass equation}
 \usage{
 Bunce(name, dbh, type = NULL, re_dbh = NULL, re = NULL, rich_output = FALSE)

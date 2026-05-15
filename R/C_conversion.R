@@ -325,8 +325,8 @@ print.biomass2c_result <- function(x, ...) {
 
 ############# Global Wood Density Lookup #############
 #'
-#' Retrieves wood density values (g/cm^3) from the Global Wood Density Database
-#' based on binomial name and a specified region.
+#' @title Retrieves wood density values (g/cm^3) from the Global Wood Density Database
+#' @description based on binomial name and a specified region.
 #' If no value exists for a species in a region, it calculates a mean based on available data from broader categories (global species mean, genus in region, genus globally, family in region, family globally).
 #'
 #' @param binomial Character vector of binomial names (genus species).

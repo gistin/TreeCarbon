@@ -54,7 +54,7 @@ print(tariff)
 
 ## ----tariff-conifer--------------------------------------------------------------------
 # Method C: Conifer tariff
-tariff_pine <- conifer_tariff(spcode = "PS", height = 20, dbh = 30,
+tariff_pine <- conifer_tariff(spcode = "SP", height = 20, dbh = 30,
                               re_h = 0.05, re_dbh = 0.025)
 
 print(tariff_pine)
@@ -215,9 +215,9 @@ stem_vol <- treevol(
 )
 
 cat("=== Step 3: Volume Estimation ===\n")
-cat(sprintf("Merchantable volume: %.3f ± %.3f m³\n", 
+cat(sprintf("Merchantable volume: %.3f ± %.3f m³\n",
             merch_vol$volume, merch_vol$sigma))
-cat(sprintf("Stem volume: %.3f ± %.3f m³\n", 
+cat(sprintf("Stem volume: %.3f ± %.3f m³\n",
             stem_vol$stemvolume, stem_vol$sigma))
 cat("\n")
 
@@ -238,9 +238,9 @@ agb <- wood_bio$woodbiomass + crown_bio$biomass
 agb_sigma <- sqrt(wood_bio$sigma^2 + crown_bio$sigma^2)
 
 cat("=== Step 4: Biomass Calculation ===\n")
-cat(sprintf("Wood biomass: %.3f ± %.3f t\n", 
+cat(sprintf("Wood biomass: %.3f ± %.3f t\n",
             wood_bio$woodbiomass, wood_bio$sigma))
-cat(sprintf("Crown biomass: %.3f ± %.3f t\n", 
+cat(sprintf("Crown biomass: %.3f ± %.3f t\n",
             crown_bio$biomass, crown_bio$sigma))
 cat(sprintf("Total AGB: %.3f ± %.3f t\n", agb, agb_sigma))
 cat("\n")
@@ -254,14 +254,14 @@ carbon <- biomass2c(
 )
 
 cat("=== Step 5: Carbon Conversion ===\n")
-cat(sprintf("Above-ground carbon: %.3f ± %.3f t C\n", 
+cat(sprintf("Above-ground carbon: %.3f ± %.3f t C\n",
             carbon$AGC, carbon$sig_AGC))
 cat("\n")
 
 # === Summary ===
 cat("=== FINAL RESULT ===\n")
 cat(sprintf("Tree: %s (DBH: %d cm, Height: %d m)\n", species_name, dbh, height))
-cat(sprintf("Above-ground carbon: %.3f ± %.3f t C\n", 
+cat(sprintf("Above-ground carbon: %.3f ± %.3f t C\n",
             carbon$AGC, carbon$sig_AGC))
 cat(sprintf("95%% CI: [%.3f, %.3f] t C\n",
             carbon$AGC - 1.96 * carbon$sig_AGC,
@@ -273,7 +273,7 @@ cat(sprintf("95%% CI: [%.3f, %.3f] t C\n",
 carbon_simple <- fc_agc(name = "Oak", dbh = 45, height = 18,
                         type = "broadleaf", output.all = FALSE)
 
-cat(sprintf("Carbon: %.3f tonnes\n", carbon_simple))
+cat(sprintf("Carbon: %.3f tonnes\n", carbon_simple$AGC_WCC_t))
 
 
 ## ----fc-agc-detailed-------------------------------------------------------------------
@@ -292,7 +292,7 @@ carbon_error <- fc_agc_error(name = "Oak", dbh = 45, height = 18,
 
 # View key results
 cat("=== Carbon with Uncertainty ===\n")
-cat(sprintf("Carbon: %.3f ± %.3f t C\n", 
+cat(sprintf("Carbon: %.3f ± %.3f t C\n",
             carbon_error$AGC_WCC_t, carbon_error$sig_AGC))
 cat(sprintf("95%% CI: [%.3f, %.3f] t C\n",
             carbon_error$AGC_WCC_t - 1.96 * carbon_error$sig_AGC,
@@ -371,11 +371,11 @@ cat(sprintf("Seedling carbon: %.4f ± %.4f t C\n",
 # Get wood density from BIOMASS package
 if (requireNamespace("BIOMASS", quietly = TRUE)) {
   wd <- BIOMASS::getWoodDensity("Quercus", "robur", region = "Europe")
-  
+
   # Use custom NSG
   carbon_custom <- fc_agc(name = "Oak", dbh = 45, height = 18,
                           type = "broadleaf", nsg = wd$meanWD)
-  
+
   cat("=== Using Custom Wood Density ===\n")
   cat(sprintf("NSG from BIOMASS: %.3f\n", wd$meanWD))
   cat(sprintf("Carbon: %.3f tonnes\n", carbon_custom$AGC_WCC_t))
@@ -396,7 +396,7 @@ plot_data <- data.frame(
   carbon = carbon_range
 )
 
-ggplot(plot_data, aes(x = dbh, y = carbon)) +
+ggplot(plot_data, aes(x = dbh, y = carbon.AGC_WCC_t)) +
   geom_line(linewidth = 1.2, color = "darkgreen") +
   geom_point(size = 2, color = "darkgreen") +
   labs(
@@ -424,7 +424,7 @@ plot_data <- data.frame(
 )
 
 ggplot(plot_data, aes(x = dbh, y = carbon)) +
-  geom_ribbon(aes(ymin = ci_low, ymax = ci_high), 
+  geom_ribbon(aes(ymin = ci_low, ymax = ci_high),
               alpha = 0.2, fill = "darkgreen") +
   geom_line(linewidth = 1.2, color = "darkgreen") +
   geom_point(size = 2, color = "darkgreen") +
@@ -484,7 +484,7 @@ stand_data <- data.frame(
   species = c("Oak", "Beech", "Ash", "Birch", "Oak", "Beech"),
   dbh = c(45, 38, 52, 28, 55, 42),
   height = c(18, 22, 24, 15, 20, 21),
-  type = c("broadleaf", "broadleaf", "broadleaf", "broadleaf", 
+  type = c("broadleaf", "broadleaf", "broadleaf", "broadleaf",
            "broadleaf", "broadleaf")
 )
 
@@ -499,7 +499,7 @@ stand_summary <- aggregate(
   list(AGC = stand_results$AGC_WCC_t,
        Uncertainty = stand_results$sig_AGC),
   by = list(Species = stand_results$name),
-  FUN = function(x) c(Total = sum(x, na.rm = TRUE), 
+  FUN = function(x) c(Total = sum(x, na.rm = TRUE),
                       Mean = mean(x, na.rm = TRUE))
 )
 

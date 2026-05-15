@@ -514,6 +514,7 @@ cat(sprintf("Range of CV: %.1f%% - %.1f%%\n",
 ```{r plot-method-diff, fig.height=6, eval=requireNamespace("BIOMASS", quietly = TRUE) && requireNamespace("allodb", quietly = TRUE)}
 # Reshape data for plotting
 library(tidyr)
+library(dplyr)
 
 plot_data <- batch_comparison %>%
   select(genus, species, dbh, WCC_C_t, biomass_C_t, allodb_C_t, Bunce_C_t) %>%

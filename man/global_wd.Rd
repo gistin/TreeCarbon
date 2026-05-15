@@ -2,9 +2,7 @@
 % Please edit documentation in R/C_conversion.R
 \name{global_wd}
 \alias{global_wd}
-\title{Retrieves wood density values (g/cm^3) from the Global Wood Density Database
-based on binomial name and a specified region.
-If no value exists for a species in a region, it calculates a mean based on available data from broader categories (global species mean, genus in region, genus globally, family in region, family globally).}
+\title{Retrieves wood density values (g/cm^3) from the Global Wood Density Database}
 \usage{
 global_wd(binomial, region = "World")
 }
@@ -22,7 +20,6 @@ Choose from: "Africa (extratropical)", "Africa (tropical)", "Australia",
 Numeric vector of wood density values corresponding to the inputs. Returns NA if no relevant match is found.
 }
 \description{
-Retrieves wood density values (g/cm^3) from the Global Wood Density Database
 based on binomial name and a specified region.
 If no value exists for a species in a region, it calculates a mean based on available data from broader categories (global species mean, genus in region, genus globally, family in region, family globally).
 }

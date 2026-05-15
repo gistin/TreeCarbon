@@ -184,7 +184,7 @@ get_method_metadata <- function(method = "all") {
         "Limited species coverage (mainly UK broadleaves)",
         "Historic dataset - calibration trees from 1960s",
         "Simple power-law relationship",
-        "Confidence intervals are symmetric approximations (biomass ± 1.96 * sigma)",
+        "Confidence intervals are symmetric approximations (biomass +- 1.96 * sigma)",
         "Table 6 shows some asymmetric limits at large DBH, but symmetric intervals are reasonable for CV < 30%"
       ),
       region = "United Kingdom",
@@ -752,7 +752,7 @@ single_tree_rich_output <- function(value, method, measure, unit,
   return(result)
 }
 
-
+#JM note this function was not working, I think I have fixed it but? Isabel to check
 #################### Multiple Tree Rich Return ######################
 
 #' @title Create a rich allometry result object for multiple trees
@@ -770,11 +770,12 @@ single_tree_rich_output <- function(value, method, measure, unit,
 #' @examples
 #' # Internal use - creates rich result for downstream functions
 #' result <- multi_tree_rich_output(value = 1.5, method = "WCC",
-#'   measure = "AGC", unit = "t", uncertainty = 0.15,
+#'   measure = "AGC", unit = "t", sigma = 0.15,
 #'   inputs = list(dbh = 30, height = 15, species = "Quercus robur"))
 #' print(result)
 #' @export
-#'
+
+
 multi_tree_rich_output <- function(value, method, measure, unit, sigma = NULL,
                                    validity_warnings = character(),
                                    flags = character(), inputs = list())
@@ -783,7 +784,7 @@ multi_tree_rich_output <- function(value, method, measure, unit, sigma = NULL,
   # Input check
   methods <- c("WCC", "BIOMASS", "allodb", "Bunce")
   if (!missing(method) && !(method %in% methods)) {
-    stop("Invalid method. Choose from: ", paste(method, collapse = ", "))
+    stop("Invalid method. Choose from: ", paste(methods, collapse = ", "))
   }
 
   # Get method metadata
@@ -791,11 +792,13 @@ multi_tree_rich_output <- function(value, method, measure, unit, sigma = NULL,
   assump_df <- method_assumptions[method_assumptions$method == method, ]
 
   # Calculate CI if we have uncertainty but not explicit CI
-  if (!is.null(uncertainty) && is.null(ci_low)) {
-    ci_low <- value - 1.96 * uncertainty
-    ci_high <- value + 1.96 * uncertainty
+  ci_low  <- NULL
+  ci_high <- NULL
+  if (!is.null(sigma)) {
+    ci_low <- value - 1.96 * sigma
+    ci_high <- value + 1.96 * sigma
   }
-
+   meta = meta_df
   # Build the result object
   result <- list(
     # === Core estimate ===
@@ -804,7 +807,7 @@ multi_tree_rich_output <- function(value, method, measure, unit, sigma = NULL,
     unit = unit,
 
     # === Method information ===
-    method = method,
+    meta = meta,
     method_full_name = meta$full_name,
     reference = meta$reference,
     reference_short = meta$reference_short,
@@ -817,7 +820,7 @@ multi_tree_rich_output <- function(value, method, measure, unit, sigma = NULL,
     assumptions = meta$assumptions,
 
     # === Uncertainty ===
-    uncertainty = uncertainty,
+    uncertainty = sigma,
     uncertainty_method = meta$uncertainty_method,
     ci_low = ci_low,
     ci_high = ci_high,

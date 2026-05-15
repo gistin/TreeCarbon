@@ -2,10 +2,7 @@
 % Please edit documentation in R/Uncertainty.R
 \name{MC_propagate}
 \alias{MC_propagate}
-\title{Propagates uncertainty in tree biomass or carbon estimates using Monte Carlo simulation.
-This function can be applied to any allometric function, including Bunce, WCC, Chave, or user-defined functions.
-Users provide the function, input means and standard deviations (measurement or parameter uncertainty),
-and optionally a correlation matrix between inputs.}
+\title{Propagates uncertainty in tree biomass or carbon estimates using Monte Carlo simulation.}
 \usage{
 MC_propagate(fn, inputs, N = 5000, corr_matrix = NULL, extra_args = list())
 }
@@ -36,7 +33,6 @@ A list containing:
 }
 }
 \description{
-Propagates uncertainty in tree biomass or carbon estimates using Monte Carlo simulation.
 This function can be applied to any allometric function, including Bunce, WCC, Chave, or user-defined functions.
 Users provide the function, input means and standard deviations (measurement or parameter uncertainty),
 and optionally a correlation matrix between inputs.

@@ -2,7 +2,6 @@
 % Please edit documentation in R/C_allometries.R
 \name{BIOMASS}
 \alias{BIOMASS}
-\alias{biomass}
 \title{Estimate Tree Biomass using BIOMASS R package}
 \usage{
 BIOMASS(

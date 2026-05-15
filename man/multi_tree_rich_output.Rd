@@ -42,7 +42,7 @@ method metadata, validity warnings, flags, and uncertainty information.
 \examples{
 # Internal use - creates rich result for downstream functions
 result <- multi_tree_rich_output(value = 1.5, method = "WCC",
-  measure = "AGC", unit = "t", uncertainty = 0.15,
+  measure = "AGC", unit = "t", sigma = 0.15,
   inputs = list(dbh = 30, height = 15, species = "Quercus robur"))
 print(result)
 }

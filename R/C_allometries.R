@@ -81,7 +81,7 @@
 #' result <- Bunce(c("Oak", "Beech"), c(25, 200), rich_output = TRUE)  # Large DBH
 #' result$validity_warnings
 #' @export
-#' @aliases Bunce
+#' @aliases bunce
 #'
 Bunce <- function(name, dbh, type = NULL, re_dbh = NULL, re = NULL,
                   rich_output = FALSE) {
@@ -241,7 +241,7 @@ Bunce <- function(name, dbh, type = NULL, re_dbh = NULL, re = NULL,
       if (!is.null(re_dbh) && "sigma" %in% names(r) && length(r$sigma) > 0 && !is.na(r$sigma[1])) {
         uncertainty_val <- r$sigma[1]
       }
-      
+
       return(single_tree_rich_output(value = r$biomass[1], method = "Bunce",
         measure = "AGB",                                   unit = "kg",
         uncertainty = uncertainty_val,
@@ -301,7 +301,7 @@ Bunce <- function(name, dbh, type = NULL, re_dbh = NULL, re = NULL,
       } else {
         rep(NA_real_, nrow(r))
       }
-      
+
       # Tree-specific flags (each tree may have different flags)
       tree_flags_list <- if (exists("used_fallback")) {
         lapply(seq_len(nrow(r)), function(i) {
@@ -746,7 +746,6 @@ print.allodb_multi_result <- function(x, ...) {
 #' print(result)
 #' }
 #'
-#' @aliases biomass
 #' @export
 #'
 BIOMASS <- function(dbh, height = NULL, genus, species, coords, region = "World",
@@ -1050,7 +1049,7 @@ BIOMASS <- function(dbh, height = NULL, genus, species, coords, region = "World"
     } else {
       rep(NA_real_, nrow(df))
     }
-    
+
     ci_low_vals <- if (!is.null(agb_credible)) {
       agb_credible$CI_5
     } else if (!is.null(agb_sd) && !all(is.na(agb_sd))) {
@@ -1058,7 +1057,7 @@ BIOMASS <- function(dbh, height = NULL, genus, species, coords, region = "World"
     } else {
       rep(NA_real_, nrow(df))
     }
-    
+
     ci_high_vals <- if (!is.null(agb_credible)) {
       agb_credible$CI_95
     } else if (!is.null(agb_sd) && !all(is.na(agb_sd))) {

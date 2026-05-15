@@ -1065,7 +1065,7 @@ cat("Rich output provides metadata but is slightly slower\n")
 
 ```{r export-csv}
 # Calculate results
-results <- fc_agc(name = trees$species, dbh = trees$dbh,
+results <- fc_agc(name = trees$name, dbh = trees$dbh,
                   height = trees$height, type = trees$type,
                   output.all = TRUE)
 
